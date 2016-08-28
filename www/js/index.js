@@ -12,7 +12,7 @@ function showPosition(position) {
     lon = position.coords.longitude;
     latlon = new google.maps.LatLng(lat, lon)
     mapholder = document.getElementById('mapholder')
-    mapholder.style.height = '500px';
+    mapholder.style.height = '380px';
     mapholder.style.width = '100%';
 
     var myOptions = {
@@ -45,10 +45,25 @@ function showError(error) {
 
 $(document).ready(function(){
     var settings = $("#settings");
-
+    var status = 0;
+    
     settings.click(function(){
-        $(this).toggleClass("down"); 
+         if(status == 0){
+            $("#refresh").fadeIn("fast").animate({"bottom":"125px"}, 200, "linear");
+            status++;
+         }else{
+            $("#refresh").animate({"bottom":"20px"}, 200, "linear").fadeOut("fast");
+            status--;
+         }
+        
+        $(this).toggleClass("down");
+    });
+
+$("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
     });
 
    
 });
+
